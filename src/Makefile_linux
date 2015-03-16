@@ -1,0 +1,23 @@
+.SUFFIXES: .cpp .o
+#CFLAGS = -pg -Wall
+#CFLAGS = -O2 -pg -Wall -DNDEBUG
+CFLAGS = -O3 -Wall -DNDEBUG
+INCLUDES = -I/usr/local/app/fftw-gnu/include -I/usr/local/app/boost/current -I$(HOME)/work/hosm
+LDFLAGS = -L/usr/local/app/fftw-gnu/lib -L/usr/local/app/boost/lib
+CXX = g++
+OBJS = WCreater.o HosmCalculator.o GradientCalculator.o SpectrumProperty.o Logger.o SpectrumCreater.o util.o Property.o WaveBinData.o StatisticLogger.o FFT2D.o All.o
+
+export
+
+all :
+	@echo 'make <prog name>'
+
+hosm: hosm.o $(OBJS)
+	$(CXX)  -o $@ $(OBJS) $< $(INCLUDE) $(LDFLAGS) -lfftw3 -lprofiler
+
+subsystem :
+	$(MAKE) -C exception
+
+
+.cpp.o:
+	$(CXX) -c $< $(CFLAGS) $(INCLUDES)
