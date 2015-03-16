@@ -1,5 +1,5 @@
 #include "Property.h"
-#include "exception/All.h"
+#include "Exception.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -39,7 +39,7 @@ namespace flow {
         {
             fileName_ = fileName;
             ifstream in;
-            // Îã³°¤òµö²Ä
+            // ä¾‹å¤–ã‚’è¨±å¯
             in.exceptions(fstream::badbit | fstream::failbit);
             try {
                 in.open(fileName.c_str());
@@ -57,11 +57,11 @@ namespace flow {
             vector<string> items;
             try {
                 while( getline(in, line)) {
-                    // ¹ÔÆ¬¤¬#¤Ê¤é¥¹¥­¥Ã¥×
+                    // è¡Œé ­ãŒ#ãªã‚‰ã‚¹ã‚­ãƒƒãƒ—
                     if( boost::starts_with(line, "#"))
                         continue;
                     boost::algorithm::split(items, line, boost::is_any_of("="));
-                    // 1¹Ô¤ËÉ¬¤º"="¤Ï°ì¤Ä
+                    // 1è¡Œã«å¿…ãš"="ã¯ä¸€ã¤
                     if(items.size() != 2)
                         continue;
                     dataMap_.insert
@@ -167,7 +167,7 @@ namespace flow {
             if(val == "false")
                 return false;
 
-            // true(TRUE) false(FALSE) °Ê³°¤Ç¤ÏÎã³°¤òÅê¤²¤ë
+            // true(TRUE) false(FALSE) ä»¥å¤–ã§ã¯ä¾‹å¤–ã‚’æŠ•ã’ã‚‹
             string msg = "true(TREU) or false(FALSE) is allowed as bool type value";
             flow::exception::Parse e;
             MACRO_THROW_EXCEPTION(e, msg) e;
@@ -177,11 +177,11 @@ namespace flow {
         UbVectorD Property::cast_<UbVectorD>(const string& valStr) const
         {
             string val = boost::to_lower_copy(valStr);
-// valStr ¤òspace¤Çsplit
+// valStr ã‚’spaceã§split
             UbVectorD vec;
-            //vec¤ÎÍ×ÁÇ¿ô¤òsplit¤ÇÊ¬³ä¤·¤¿¿ô¤Ë¤¢¤ï¤»¤ë
+            //vecã®è¦ç´ æ•°ã‚’splitã§åˆ†å‰²ã—ãŸæ•°ã«ã‚ã‚ã›ã‚‹
             try {
-                // Í×ÁÇ¤ò¥»¥Ã¥È
+                // è¦ç´ ã‚’ã‚»ãƒƒãƒˆ
 
                 return vec;
             } catch(boost::bad_lexical_cast& e0) {
@@ -206,8 +206,8 @@ namespace flow {
             return val;
         }
 
-// Â¸ºßÈ½Äê¤ÈÃÍ¤Î¼èÆÀ¤Ç½èÍı¤¬2ÅÙ¼ê´Ö¤Ë¤Ê¤Ã¤Æ¤¤¤ë¤¬¡¢
-// ¥¹¥Ş¡¼¥È¤Ë½ñ¤¯ÊıË¡¤¬»×¤¤¤Ä¤«¤Ê¤¤¡£
+// å­˜åœ¨åˆ¤å®šã¨å€¤ã®å–å¾—ã§å‡¦ç†ãŒ2åº¦æ‰‹é–“ã«ãªã£ã¦ã„ã‚‹ãŒã€
+// ã‚¹ãƒãƒ¼ãƒˆã«æ›¸ãæ–¹æ³•ãŒæ€ã„ã¤ã‹ãªã„ã€‚
         bool Property::exist_(const string& key) const
         {
             if(dataMap_.find(key) == dataMap_.end() )
@@ -215,7 +215,7 @@ namespace flow {
             return true;
         }
 
-// template¤ÎÌÀ¼¨²½
+// templateã®æ˜ç¤ºåŒ–
         template string Property::get(const string&) const;
         template string Property::get(const string&, const string&) const;
         template int    Property::get(const string&) const;
@@ -226,11 +226,10 @@ namespace flow {
         template bool   Property::get(const string&, const bool&) const;
         template char   Property::get(const string&) const;
         template char   Property::get(const string&, const char&) const;
-// ¤Ê¤¼¤«¥¨¥é¡¼¤È¤Ê¤ë¤Î¤Ç¼ÂÁõ¤´¤ÈÌÀ¼¨²½
+// ãªãœã‹ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹ã®ã§å®Ÿè£…ã”ã¨æ˜ç¤ºåŒ–
 //        template UbVectorD   Property::get(const string&) const;
 //        template UbVectorD   Property::get(const string&, const char&) const;
 
 
     } // util
 }
-

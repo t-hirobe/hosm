@@ -1,6 +1,13 @@
 #ifndef EXCEPTION_EXCEPTION_H__
 #define EXCEPTION_EXCEPTION_H__
 
+/*! @brief
+ *
+ * @author Tomoyuki Hirobe
+ * @date 2010/05/03  5:17:37
+ * Lastupdate: 2015-03-16 11:59:40
+ */
+
 #include <string>
 #include <vector>
 #include <boost/format.hpp>
@@ -18,22 +25,21 @@
 namespace flow {
     namespace exception {
 
-/*! @brief ¤¹¤Ù¤Æ¤ÎÎã³°¤òÊäÂ­
+/*! @brief ã™ã¹ã¦ã®ä¾‹å¤–ã‚’è£œè¶³
  *
- * ¤³¤Î¥×¥í¥¸¥§¥¯¥È¤Ç¤Ï¤³¤Î¥¯¥é¥¹¤ò¤¹¤Ù¤Æ¤ÎÎã³°¥¯¥é¥¹¤Î¾å°Ì¥¯¥é¥¹
- * ¤È¤·¡¢¤¹¤Ù¤Æ¤Î´Ø¿ô¤Ï¤³¤ÎÇÉÀ¸¥¯¥é¥¹¤Î¤ß¤òÁ÷½Ğ¤·¤Ş¤¹¡£
+ * ã“ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã§ã¯ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ã™ã¹ã¦ã®ä¾‹å¤–ã‚¯ãƒ©ã‚¹ã®ä¸Šä½ã‚¯ãƒ©ã‚¹
+ * ã¨ã—ã€ã™ã¹ã¦ã®é–¢æ•°ã¯ã“ã®æ´¾ç”Ÿã‚¯ãƒ©ã‚¹ã®ã¿ã‚’é€å‡ºã—ã¾ã™ã€‚
  *
  * @author Tomoyuki Hirobe
  * @date 2010/05/03  5:17:37
- * $Lastupdate: 2010/05/06  2:17:26 $
  */
         class All
         {
         public:
             All() {};
-            // ¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸¤òÄÉ²Ã
+            // ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿½åŠ 
             void addInfo(const std::string& fileInfo, const std::string& msg);
-            // ¸½ºß¤Î¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸¥í¥°¤òÉ½¼¨
+            // ç¾åœ¨ã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ­ã‚°ã‚’è¡¨ç¤º
             std::string info() const;
 
         private:
@@ -41,22 +47,20 @@ namespace flow {
         };
 
 
-/*! @brief IO½èÍı·Ï¤ÎÎã³°¤òÊäÂ­
+/*! @brief IOå‡¦ç†ç³»ã®ä¾‹å¤–ã‚’è£œè¶³
  *
  * @author Tomoyuki Hirobe
  * @date 2010/05/03  5:17:37
- * $Lastupdate: 2010/05/06  2:17:26 $
  */
         class IO :
             public All
         {};
 
 
-/*! @brief ²òÀÏ·Ï¤ÎÎã³°¤òÊäÂ­
+/*! @brief è§£æç³»ã®ä¾‹å¤–ã‚’è£œè¶³
  *
  * @author Tomoyuki Hirobe
  * @date 2010/05/03  5:17:37
- * $Lastupdate: 2010/05/06  2:17:26 $
  */
         class Parse :
             public All
@@ -66,5 +70,4 @@ namespace flow {
     } // exception
 } // flow
 
-#endif /** EXCEPTION_EXCEPTION_H__ */
-
+#endif /** UTIL_EXCEPTION_H__ */

@@ -8,7 +8,7 @@
 #include <boost/timer.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include "Property.h"
-#include "exception/All.h"
+#include "Exception.h"
 #include "util.h"
 #include "Logger.h"
 #include "Define.h"
